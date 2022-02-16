@@ -1,3 +1,5 @@
+from typing import Union
+
 vec2=None
 class vec2:
     def __init__(self,x: float, y: float) -> None:
@@ -47,25 +49,37 @@ class vec2:
             self.y/num
         )
     
-    def add(self,i: vec2 or float):
+    def __add__(self,i: Union[vec2,float]):
         if isinstance(i,vec2):
             return self.addVec(i)
         elif isinstance(i,float) or isinstance(i,int):
             return self.addNum(i)
-    def sub(self,i: vec2 or float):
+    def __radd__(self,i: Union[vec2,float]):
+        return self.__add__(i)
+    
+
+    def __sub__(self,i: Union[vec2,float]):
         if isinstance(i,vec2):
             return self.subVec(i)
         elif isinstance(i,float) or isinstance(i,int):
             return self.subNum(i)
-    def mult(self,i: vec2 or float):
+    def __rsub__(self,i: Union[vec2,float]):
+        return self.__sub__(i)
+
+    def __mul__(self,i: Union[vec2,float]):
         if isinstance(i,vec2):
             return self.multVec(i)
         elif isinstance(i,float) or isinstance(i,int):
             return self.multNum(i)
-    def div(self,i: vec2 or float):
+    def __rmul__(self,i: Union[vec2,float]):
+        return self.__mul__(i)
+    
+    def __truediv__(self,i: Union[vec2,float]):
         if isinstance(i,vec2):
             return self.divVec(i)
         elif isinstance(i,float) or isinstance(i,int):
             return self.divNum(i)
+    def __rtruediv__(self,i: Union[vec2,float]):
+        return self.__truediv__(i)
         
     
